@@ -1,6 +1,7 @@
 package homecontrolclient;
 
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -54,7 +55,7 @@ public class GarageDoorStatusDialog extends JDialog implements ActionListener, S
 		btnLeftDoor.addActionListener(this);
 		leftDoorPanel.add(lblLeftDoorOpen);
 		leftDoorPanel.add(btnLeftDoor);
-		
+
 		JPanel rightDoorPanel = new JPanel();
 		String rDoorStatus = garageDoorStatus.isRightDoorOpen() ? "Open" : "Closed";
 		lblRightDoorOpen = new JLabel("Right Door: " + rDoorStatus);
@@ -67,6 +68,7 @@ public class GarageDoorStatusDialog extends JDialog implements ActionListener, S
 		contentPane.add(leftDoorPanel);
 		contentPane.add(rightDoorPanel);
 		
+		this.setPreferredSize(new Dimension(290, 100));
 		pack();	
 	}
 	
@@ -87,7 +89,10 @@ public class GarageDoorStatusDialog extends JDialog implements ActionListener, S
 		{	
 			Gson gson = new Gson();
 			GarageDoor doorStatus = gson.fromJson(doorJson, GarageDoor.class);
-		
+			
+//			System.out.println(String.format("processDoorStatusUpdate: Left Door: %b, Right door: %b",
+//					doorStatus.isLeftDoorOpen(), doorStatus.isRightDoorOpen()));
+		 
 			String lDoorStatus = doorStatus.isLeftDoorOpen() ? "Open" : "Closed";
 			lblLeftDoorOpen.setText("Left Door: " + lDoorStatus);
 	
@@ -97,7 +102,7 @@ public class GarageDoorStatusDialog extends JDialog implements ActionListener, S
 			garageDoorStatus.setLeftDoorOpen(doorStatus.isLeftDoorOpen());
 		
 			String rDoorStatus = doorStatus.isRightDoorOpen() ? "Open" : "Closed";
-			btnLeftDoor.setText(lDoorStatus + " Left Door");
+			lblRightDoorOpen.setText("Right Door: " + rDoorStatus);
 	
 			rDoorStatus = doorStatus.isRightDoorOpen() ? "Close" : "Open";
 			btnRightDoor.setText(rDoorStatus + " Right Door");
@@ -159,7 +164,6 @@ public class GarageDoorStatusDialog extends JDialog implements ActionListener, S
 	{
 		if(se.getType().equals("STATUS_GARAGE_DOOR"))
 		{
-			System.out.println("dataChanged: doorJson = " + se.getJson());
 			processDoorStatusUpdate(se.getJson());
 		}
 	}
