@@ -31,8 +31,8 @@ public class HomeControl
 	
 	//Server Connection
 	private ServerIF serverIF;	
-//	private static String defaultServerAddress = "72.209.192.152";	//Cox based server
-	private static String defaultServerAddress = "192.168.1.102";	//local server
+	private static String defaultServerAddress = "72.209.192.152";	//Cox based server
+//	private static String defaultServerAddress = "192.168.1.102";	//local server
 //	private static String defaultServerAddress = "localhost";
 	private static final int PORT = 8902;
 	
@@ -100,7 +100,7 @@ public class HomeControl
         	} 
         	catch (SocketTimeoutException e2) 
         	{
-        		System.out.println("SocketTimeoutException");
+        		System.out.println("SocketTimeoutException Encountered");
 //        		serverIPAddress = getServerIPAddress(serverIPAddress);
         		if(serverIPAddress == null)
         			break;
@@ -109,6 +109,7 @@ public class HomeControl
         	} 
         	catch (UnknownHostException e2) 
         	{
+        		System.out.println("UnknownHostException");
 //        		serverIPAddress = getServerIPAddress(serverIPAddress);
         		if(serverIPAddress == null)
         			break;
@@ -117,6 +118,7 @@ public class HomeControl
         	} 
         	catch (IOException e2) 
         	{
+        		System.out.println("IOException");
  //       		serverIPAddress = getServerIPAddress(serverIPAddress);
         		if(serverIPAddress == null)
         			break;
