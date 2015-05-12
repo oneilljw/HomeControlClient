@@ -32,9 +32,9 @@ public class HomeControl
 	//Server Connection
 	private ServerIF serverIF;	
 	private static String defaultServerAddress = "72.209.192.152";	//Cox based server
-//	private static String defaultServerAddress = "192.168.1.102";	//local server
+//	private static String defaultServerAddress = "192.168.1.219";	//local server
 //	private static String defaultServerAddress = "localhost";
-	private static final int PORT = 8902;
+	private static final int PORT = 8901;
 	
 	//Check if we are on Mac OS X.  This is crucial to loading and using the OSXAdapter class.
     private static boolean MAC_OS_X = (System.getProperty("os.name").toLowerCase().startsWith("mac os x"));

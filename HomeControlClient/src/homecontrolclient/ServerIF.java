@@ -72,7 +72,11 @@ public class ServerIF
     	
 //    	System.out.println("ServerIF Connecting to Server at: " + timeCommandSent);
     	
-    	socket.connect(new InetSocketAddress(serverAddress, port), SOCKET_CREATION_TIMEOUT);
+    	try {
+    		socket.connect(new InetSocketAddress(serverAddress, port), SOCKET_CREATION_TIMEOUT);
+    	} catch (IOException ioe) {
+    		System.out.println("IOException: " + ioe.getMessage());
+    	}
     	socket.setSoTimeout ( SOCKET_TRANSMISSION_TIMEOUT );
 
         if(socket != null)
@@ -92,6 +96,8 @@ public class ServerIF
         		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         		loginMssg = in.readLine();
  
+        		System.out.println(loginMssg);
+        		
         		if (loginMssg.startsWith("LOGIN"))
         			bConnected = true;
 			
