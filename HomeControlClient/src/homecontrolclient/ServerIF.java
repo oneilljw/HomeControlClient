@@ -96,7 +96,7 @@ public class ServerIF
         		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         		loginMssg = in.readLine();
  
-        		System.out.println(loginMssg);
+//        		System.out.println(loginMssg);
         		
         		if (loginMssg.startsWith("LOGIN"))
         			bConnected = true;
